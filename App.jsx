@@ -37,6 +37,10 @@ function App() {
       setError('All fields are required!');
       return;
     }
+    if (!/^[A-Za-z\s]+$/.test(name.trim())) {
+      setError('Student name should contain only alphabets.');
+      return;
+}
 
     if (students.some(student => student.rollNo.toLowerCase() === rollNo.trim().toLowerCase())) {
       setError('This Roll Number already exists in the system.');
@@ -176,7 +180,11 @@ function App() {
                 type="text"
                 placeholder="e.g., Jane Doe"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => {const value = e.target.value;
+                if (/^[A-Za-z\s]*$/.test(value)) {
+                  setName(value);
+  }
+}}
               />
             </div>
 
